@@ -1,0 +1,90 @@
+urxvt.font: xft:inconsolata:size=12
+urxvt.boldFont:  xft:inconsolata:size=12
+URxvt.letterSpace: -1
+
+! special
+URxvt*scrollBar: false
+! BG, FG, CC
+*background: 	rgb:48/18/18
+*foreground: 	rgb:ff/e7/d0
+*cursorColor:	rgb:ff/e7/d0
+
+
+! black
+*color0:		rgb:20/20/20
+*color8:		rgb:40/40/40
+
+! Red
+*color1:		rgb:bf/3f/34
+*color9:		rgb:ff/6c/5f
+
+! Breen
+*color2:		rgb:70/7d/22
+*color10:		rgb:b8/ca/4b
+
+! Yellow
+*color3:		rgb:bf/7a/29
+*color11:		rgb:c7/a5/51
+
+! Blue
+*color4:		rgb:62/7a/92
+*color12:		rgb:95/b9/de
+
+! Magenta
+*color5:		rgb:75/50/7b
+*color13:		rgb:ad/7f/a8
+
+! Cyan
+*color6:		rgb:75/79/78
+*color14:		rgb:9f/a5/90
+
+! White
+*color7:		rgb:b2/a1/91
+*color15:		rgb:e8/d0/c3
+
+
+! UXTerm theme
+UXTerm.font: xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+UXTerm.boldFont: xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+UXTerm*termName: xterm-color
+UXTerm*eightBitInput: false
+
+
+! BG, FG, CC
+!UXTerm*background: 	rgb:0d/1d/27
+UXTerm*background: 	rgb:48/18/18
+UXTerm*foreground: 	rgb:ff/e7/d0
+UXTerm*cursorColor:	rgb:ff/e7/d0
+
+
+! black
+UXTerm*color0:		rgb:20/20/20
+UXTerm*color8:		rgb:40/40/40
+
+! Red
+UXTerm*color1:		rgb:bf/3f/34
+UXTerm*color9:		rgb:ff/6c/5f
+
+! Breen
+UXTerm*color2:		rgb:70/7d/22
+UXTerm*color10:		rgb:b8/ca/4b
+
+! Yellow
+UXTerm*color3:		rgb:bf/7a/29
+UXTerm*color11:		rgb:c7/a5/51
+
+! Blue
+UXTerm*color4:		rgb:62/7a/92
+UXTerm*color12:		rgb:95/b9/de
+
+! Magenta
+UXTerm*color5:		rgb:75/50/7b
+UXTerm*color13:		rgb:ad/7f/a8
+
+! Cyan
+UXTerm*color6:		rgb:75/79/78
+UXTerm*color14:		rgb:9f/a5/90
+
+! White
+UXTerm*color7:		rgb:b2/a1/91
+UXTerm*color15:		rgb:e8/d0/c3
