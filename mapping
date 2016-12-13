@@ -1,2 +1,4 @@
-i3config => ~/.config/i3/config
-Xresources => ~/.Xresources
+i3config 	=> ~/.config/i3/config
+Xresources 	=> ~/.Xresources
+ranger/		=> ~/.config/ranger/
+vimrc		=> ~/.vimrc

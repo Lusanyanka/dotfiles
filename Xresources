@@ -1,6 +1,23 @@
-urxvt.font: xft:inconsolata:size=12
-urxvt.boldFont:  xft:inconsolata:size=12
-URxvt.letterSpace: -1
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! ------------------------------------------------------------------------------
+
+! Use extended color scheme
+rofi.color-enabled:                  true
+! Color scheme for normal row
+rofi.color-normal:                   argb:00000000, #1aa, argb:11FFFFFF, #1aa,#333
+! Color scheme for urgent row
+rofi.color-urgent:                   argb:00000000, #f99, argb:11FFFFFF, #f99,#333
+! Color scheme for active row
+rofi.color-active:                   argb:00000000, #aa1, argb:11FFFFFF, #aa1,#333
+! Color scheme window
+rofi.color-window:                   argb:ee333333, #1aa,#1aa
+! Separator style (none, dash, solid)
+rofi.separator-style:                dash
+
+font: xft:inconsolata:size=12
+boldFont:  xft:inconsolata:size=12
+letterSpace: -1
 
 ! special
 URxvt*scrollBar: false
@@ -44,8 +61,8 @@ URxvt*scrollBar: false
 
 
 ! UXTerm theme
-UXTerm.font: xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-UXTerm.boldFont: xft:inconsolata:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+UXTerm.font: xft:consolas:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
+UXTerm.boldFont: xft:consolas:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
 UXTerm*termName: xterm-color
 UXTerm*eightBitInput: false
 
