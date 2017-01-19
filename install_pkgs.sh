@@ -21,4 +21,4 @@ php -r "if (hash_file('SHA384', 'composer-setup.php') === 'aa96f26c2b67226a324c2
 sudo php composer-setup.php --install-dir=/usr/bin --filename=composer
 php -r "unlink('composer-setup.php');"
 
-sudo apt-get install vim git rofi compton font-manager cabextract
+sudo apt-get install vim git rofi compton font-manager cabextract rxvt-unicode ncurses-term feh

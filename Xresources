@@ -15,93 +15,53 @@ rofi.color-window:                   argb:ee333333, #1aa,#1aa
 ! Separator style (none, dash, solid)
 rofi.separator-style:                dash
 
-font: xft:inconsolata:size=12
-boldFont:  xft:inconsolata:size=12
-letterSpace: -1
+font: xft:inconsolata:size=10
+boldFont:  xft:inconsolata:size=10
+! letterSpace: -1
+
+URxvt*font: xft:Consolas:size=10
+URxvt*scrollBar: false
+URxvt.saveLines: 4095
+URxvt.termName: rxvt-256color
+URxvt.iso14755: False
+
+! URxvt*transparent: true
+! URxvt.background:   #282a2e
+! URxvt.shading: 10
 
 ! special
-URxvt*scrollBar: false
-! BG, FG, CC
-*background: 	rgb:48/18/18
-*foreground: 	rgb:ff/e7/d0
-*cursorColor:	rgb:ff/e7/d0
-
+*.foreground:   #c5c8c6
+*.background:   #282a2e
+*.cursorColor:  #c5c8c6
 
 ! black
-*color0:		rgb:20/20/20
-*color8:		rgb:40/40/40
+*.color0:       #282a2e
+*.color8:       #363a40
 
-! Red
-*color1:		rgb:bf/3f/34
-*color9:		rgb:ff/6c/5f
+! red
+*.color1:       #912b2b
+*.color9:       #cc6666
 
-! Breen
-*color2:		rgb:70/7d/22
-*color10:		rgb:b8/ca/4b
+! green
+*.color2:       #00aa00
+*.color10:      #7bf09a
 
-! Yellow
-*color3:		rgb:bf/7a/29
-*color11:		rgb:c7/a5/51
+! yellow
+*.color3:       #e29140
+*.color11:      #f0c674
 
-! Blue
-*color4:		rgb:62/7a/92
-*color12:		rgb:95/b9/de
+! blue
+*.color4:       #4950ad
+*.color12:      #7e90ff
 
-! Magenta
-*color5:		rgb:75/50/7b
-*color13:		rgb:ad/7f/a8
+! magenta
+*.color5:       #aa00aa
+*.color13:      #cd69cd
 
-! Cyan
-*color6:		rgb:75/79/78
-*color14:		rgb:9f/a5/90
+! cyan
+*.color6:       #006aaa
+*.color14:      #53adc9
 
-! White
-*color7:		rgb:b2/a1/91
-*color15:		rgb:e8/d0/c3
-
-
-! UXTerm theme
-UXTerm.font: xft:consolas:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-UXTerm.boldFont: xft:consolas:pixelsize=13:antialias=true:hinting=true, xft:dejavu sans mono:pixelsize=13:antialias=true,hinting=true
-UXTerm*termName: xterm-color
-UXTerm*eightBitInput: false
-
-
-! BG, FG, CC
-!UXTerm*background: 	rgb:0d/1d/27
-UXTerm*background: 	rgb:48/18/18
-UXTerm*foreground: 	rgb:ff/e7/d0
-UXTerm*cursorColor:	rgb:ff/e7/d0
-
-
-! black
-UXTerm*color0:		rgb:20/20/20
-UXTerm*color8:		rgb:40/40/40
-
-! Red
-UXTerm*color1:		rgb:bf/3f/34
-UXTerm*color9:		rgb:ff/6c/5f
-
-! Breen
-UXTerm*color2:		rgb:70/7d/22
-UXTerm*color10:		rgb:b8/ca/4b
-
-! Yellow
-UXTerm*color3:		rgb:bf/7a/29
-UXTerm*color11:		rgb:c7/a5/51
-
-! Blue
-UXTerm*color4:		rgb:62/7a/92
-UXTerm*color12:		rgb:95/b9/de
-
-! Magenta
-UXTerm*color5:		rgb:75/50/7b
-UXTerm*color13:		rgb:ad/7f/a8
-
-! Cyan
-UXTerm*color6:		rgb:75/79/78
-UXTerm*color14:		rgb:9f/a5/90
-
-! White
-UXTerm*color7:		rgb:b2/a1/91
-UXTerm*color15:		rgb:e8/d0/c3
+! white
+*.color7:       #aaaaaa
+*.color15:      #e8e4da

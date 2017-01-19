@@ -5,7 +5,8 @@ font pango:Consolas 10
 floating_modifier $mod
 
 # Start a terminal
-bindsym $mod+Return exec gnome-terminal
+# bindsym $mod+Return exec gnome-terminal
+bindsym $mod+Return exec urxvt
 
 # Kill the active window
 bindsym $mod+Shift+q kill
@@ -13,8 +14,8 @@ bindsym $mod+Shift+q kill
 # start rofi (a program launcher)
 # bindsym $mod+Shift+d exec dmenu_run
 # bindsym $mod+d exec --no-startup-id i3-dmenu-desktop
-bindsym $mod+Shift+d exec --no-startup-id rofi -show drun
-bindsym $mod+d exec --no-startup-id rofi -show run
+bindsym $mod+Shift+d exec --no-startup-id rofi -show run
+bindsym $mod+d exec --no-startup-id rofi -show drun
 # change focus - Modified for vim-identical bindings
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -40,7 +41,7 @@ bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
 # split in horizontal orientation
-bindsym $mod+g split h
+bindsym $mod+c split h
 # split in vertical orientation
 bindsym $mod+v split v
 
@@ -165,8 +166,9 @@ gaps outer -3
 
 # Touchpad type disabling
 exec --no-startup-id syndaemon -d -i 0.3
-# exec --no-startup-id feh --bg-center {image path}
 exec --no-startup-id compton -b
+exec --no-startup-id feh --bg-center /home/polson/Downloads/test.png
+exec --no-startup-id nm-applet
 
 # useful shit
 bindsym $mod+e exec --no-startup-id gnome-terminal -e "ranger"
