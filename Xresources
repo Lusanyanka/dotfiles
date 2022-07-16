@@ -1,41 +1,69 @@
-! ------------------------------------------------------------------------------
-! ROFI Color theme
-! ------------------------------------------------------------------------------
+!
+! hard-code the classic DPI setting for sanity
+!
+Xft.dpi: 96
 
-! Use extended color scheme
+!
+! Rofi
+!
+! Use extended color scheme for a garish pink default scheme
 rofi.color-enabled:                  true
-! Color scheme for normal row
-rofi.color-normal:                   argb:00000000, #1aa, argb:11FFFFFF, #1aa,#333
-! Color scheme for urgent row
-rofi.color-urgent:                   argb:00000000, #f99, argb:11FFFFFF, #f99,#333
-! Color scheme for active row
-rofi.color-active:                   argb:00000000, #aa1, argb:11FFFFFF, #aa1,#333
-! Color scheme window
-rofi.color-window:                   argb:ee333333, #1aa,#1aa
+rofi.color-normal:                   argb:00000000, #e75a7c, argb:06FFFFFF, #e75a7c,#333
+rofi.color-urgent:                   argb:00000000, #f99,    argb:06FFFFFF, #f99,   #333
+rofi.color-active:                   argb:00000000, #e75a7c, argb:06FFFFFF, #e75a7c,#333
+rofi.color-window:                   argb:ee333333, #e75a7c,#e75a7c
 ! Separator style (none, dash, solid)
-rofi.separator-style:                dash
+rofi.separator-style:                solid
 
-font: xft:inconsolata:size=10
-boldFont:  xft:inconsolata:size=10
-! letterSpace: -1
+rofi.modi: window,drun,ssh
+rofi.combi-modi: window,drun
 
-URxvt*font: xft:Consolas:size=10
-URxvt*scrollBar: false
-URxvt.saveLines: 4095
+rofi.width:   30
+rofi.columns: 1
+rofi.lines:   12
+
+!
+! urxvt
+!
+
+! URxvt*font: xft:Inconsolata:size=12
+! URxvt*geometry: 110x35
+! xterm*faceName:   Ubuntu Mono for Powerline
+! xterm*faceSize:   12
+! xterm*termName:   xterm-256color
+URxvt.font:           xft:inconsolata:size=11:antialias=true:hinting=true, xft:dejavu sans mono:size=11:antialias=true,hinting=true
+URxvt.boldFont:       xft:inconsolata:size=11:antialias=true:hinting=true, xft:dejavu sans mono:size=11:antialias=true,hinting=true
+URxvt.italicFont:     xft:inconsolata:size=11:antialias=true:hinting=true, xft:dejavu sans mono:size=11:antialias=true,hinting=true
+URxvt.bolditalicFont: xft:inconsolata:size=11:antialias=true:hinting=true, xft:dejavu sans mono:size=11:antialias=true,hinting=true
+! URxvt.letterSpace: -1
+
+URxvt.scrollBar: false
+URxvt.saveLines: 100000
 URxvt.termName: rxvt-256color
 URxvt.iso14755: False
+URxvt.urgentOnBell: True
 
-! URxvt*transparent: true
-! URxvt.background:   #282a2e
-! URxvt.shading: 10
+URxvt.perl-ext: matcher
+URxvt.url-launcher: /usr/bin/chromium-browser
+URxvt.underlineURLs: True
+
+URxvt.transparent: false
+! URxvt.background:   #22262a
+URxvt.background: #12161a
+! urvxt*depth: 32
+! URxvt.shading: 15
+
+xterm.dynamicColors: true
+urxvt.dynamicColors: on
 
 ! special
-*.foreground:   #c5c8c6
-*.background:   #282a2e
+*.foreground:   #d5d8d6
+! *.background:   #22262a
+*.background:   #12161a
 *.cursorColor:  #c5c8c6
 
 ! black
-*.color0:       #282a2e
+*.color0:       #12161a
 *.color8:       #363a40
 
 ! red
