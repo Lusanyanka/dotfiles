@@ -1,0 +1,93 @@
+# Automatically adds a newline after the brace for a class definition
+# snippet "([^\t]*){$" "match braces" r
+# `!p
+# snip.rv = match.group(1)
+# `{
+# 	$0
+# }`!p
+# if "class" in match.group(1):
+# 	snip.rv += "\n"
+# `
+# endsnippet
+snippet "{$" "match braces" r
+{
+	$0
+}
+endsnippet
+
+snippet if "if statement" b
+if ($1) {
+	$2
+}
+${4:else {
+	$3
+}}
+endsnippet
+
+# XXX: bug on nested for-loops adding brackest and putting the cursor on
+# the outside of the inner for-loop.
+#
+# Is it exiting the snippet early?
+# > No.
+# snippet for "usual for statement" b
+# for (var ${1:i} = 0; $1 < $2; $1++)`!p
+# if "\n" in t[3]:
+# 	snip.rv = " {"
+# `
+# 	${3:body}`!p
+# if "\n" in t[3]:
+# 	snip += "}"
+# `
+# endsnippet
+snippet for "" b
+for (var ${1:i} = 0; $1 < $2; $1++) {
+	$0
+}
+endsnippet
+
+snippet while "while statement" b
+while ($1) {
+	$0
+}
+endsnippet
+
+snippet do "do-while statement" b
+do {
+	$0
+} while ($1);
+endsnippet
+
+snippet sw "switch statement" b
+switch ($1) {
+	default:
+		$0
+}
+endsnippet
+
+snippet (func "cheeky sneeky breeki callback shortcut" i
+(function ($1) {
+	$2
+})
+endsnippet
+
+snippet func "function declaration"
+function ${1:name} (${2:args})
+{
+	$0
+}
+endsnippet
+
+snippet class "class declaration" b
+class ${1:name} {
+	constructor (${2:args}) {`!p
+import re
+p = re.compile("(\w+)")
+args = p.findall(t[2])
+snip >> 2
+if len(args) > 0:
+	for arg in args:
+		snip += "this." + arg + " = " + arg + ";"
+`
+	}
+}
+endsnippet

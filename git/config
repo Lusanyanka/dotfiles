@@ -1,0 +1,14 @@
+[user]
+	name = lucienne
+	email = 11673599+Lusanyanka@users.noreply.github.com
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+
+[merge]
+	tool = vimdiff
+
+[mergetool]
+	keepBackup = false

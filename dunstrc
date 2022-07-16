@@ -1,0 +1,105 @@
+[global]
+    # font = Lato 12
+	font = "Roboto Mono" 10
+
+	# https://developer.gnome.org/pango/stable/PangoMarkupFormat.html
+    allow_markup = yes
+
+    # The format of the message.  Possible variables are:
+    #   %a  appname
+    #   %s  summary
+    #   %b  body
+    #   %i  iconname+path
+    #   %I  iconname
+    #   %p  progress value
+    # ICON: format = "%a\n<b>%s</b>\n%b\n%p"
+	format = "<b>%s</b>\n%b\n%p"
+	# BAR: format = "<i>%a</i>    <b>%s</b>    %b    %p"
+
+    sort = yes              # Sort messages by urgency.
+    indicate_hidden = yes
+    alignment = left        # "left", "center" and "right"
+    bounce_freq = 0         # Set to 0 to disable. Conflicts with "word_wrap".
+    show_age_threshold = -1 # Set to -1 to disable.
+    word_wrap = yes
+	# BAR: word_wrap = no
+    ignore_newline = no
+    # BAR: ignore_newline = yes
+
+    # The geometry of the window: [{width}]x{height}[+/-{x}+/-{y}]
+	geometry = "400x5-30+20"
+    # BAR: geometry = "600x1-0+0"
+    line_height = 4
+    separator_height = 2
+    padding = 12
+    horizontal_padding = 16
+
+    shrink = no
+    transparency = 0
+    idle_threshold = 0
+    monitor = 0
+    follow = none
+    sticky_history = yes
+    history_length = 20
+    show_indicators = yes  # Display indicators for URLs (U) and actions (A).
+    separator_color = auto # auto, foreground, frame, or "#xxxxxx"
+
+    startup_notification = false
+    dmenu = /usr/bin/dmenu -p dunst:
+    browser = /usr/bin/chromium -new-tab
+    icon_position = off
+    icon_folders = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
+
+[frame]
+    width = 0
+    color = "#202020"
+
+[shortcuts]
+    # Xev might be helpful to find names for keys.
+    close = ctrl+space           # Close notification.
+    close_all = ctrl+shift+space # Close all notifications.
+    history = ctrl+grave         # Redisplay last message(s).
+    context = ctrl+shift+period  # Context menu.
+
+[urgency_low]
+    # background = "#303344"
+	background = "#3B7C87"
+    foreground = "#efefef"
+    timeout = 3
+
+[urgency_normal]
+    # background = "#006aaa"
+    background = "#5B8234"
+    foreground = "#efefef"
+    timeout = 6
+
+[urgency_critical]
+    # background = "#b04040"
+    background = "#B7472A"
+    foreground = "#ffffff"
+    timeout = 60
+
+#
+# OVERRIDE RULES
+#
+# Messages can be matched by "appname", "summary", "body", "icon", "category",
+# "msg_urgency" and you can override the "timeout", "urgency", "foreground",
+# "background", "new_icon" and "format".
+#
+# Shell-like globbing will get expanded.
+#
+
+[spotify]
+	appname = Spotify
+	format = "<b>%s</b>\n%b"
+	timeout = 3
+
+#
+# SCRIPTING
+#
+# You can specify a script that gets run when the rule matches by setting the
+# "script" option.
+# The script will be called as follows:
+#   script appname summary body icon urgency
+# where urgency can be "LOW", "NORMAL" or "CRITICAL".
+#

@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=TickTick
+Comment=Task management web app
+Exec=chromium --app=https://ticktick.com
+Terminal=false
+Type=Application
+Categories=Web;

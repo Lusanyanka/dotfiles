@@ -1,0 +1,75 @@
+#
+# Non-code file exclusions
+#
+
+# Windows tmp files
+**/\~*
+
+# ignore dotfiles, except .gitignores
+**/.*
+!**/.gitignore
+
+# Vim files
+**/Session.vim
+**/shada
+**/.netrwhist
+
+# misc. binary files
+**/*.zip
+**/a.out
+
+# common image formats
+**/*.png
+**/*.gif
+**/*.jpeg
+**/*.jpg
+**/*.tiff
+**/*.bmp
+**/*.emf
+**/*.svg
+**/*.dwg
+**/*.cgm
+
+# log files
+**/*.log
+**/nohup.out
+**/*.err
+**/core.*
+
+#
+# Language-specific file exclusions
+#
+
+# C project files
+**/*.[oad]
+
+# Java project files
+**/*.class
+
+# # Verilog
+# **/*.vcd
+# **/*.vpd
+# **/*.log
+# **/simv
+# **/DVEfiles
+# **/*.key
+# **/*.repC
+# **/*.sdc
+# **/*.sdf
+# **/*.vcd
+# **/*.vpd
+# # Verilog build results
+# **/csrc/
+# **/simv.daidir/
+
+# LaTeX
+**/*.aux
+**/*.out
+**/*.fdb_latexmk
+**/*.fls
+**/*.log
+**/*.pdf
+**/*.synctex.gz
+
+# Jupyter checkpoints
+**/*.ipynb_checkpoints

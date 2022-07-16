@@ -1,0 +1,22 @@
+snippet if
+if ($1)
+${2:else}
+$3
+endif
+endsnippet
+
+snippet filter
+endsnippet
+
+snippet "fun(c(tion)?)?" "function" br
+function! ${1:name} (${2:arg, ...})
+	$0
+endfunction
+endsnippet
+
+snippet au "autocommands group"
+augroup ${1:name}
+	au!
+	au ${2:event} ${3:result}
+augroup END
+endsnippet

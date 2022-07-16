@@ -1,0 +1,43 @@
+.PHONY: clean
+
+#
+# Nabbed from the kernel source tree to encourage parallel make
+#
+# ifeq ($(JOBS),)
+#   JOBS := $(shell (getconf _NPROCESSORS_ONLN || egrep -c '^processor|^CPU[0-9]' /proc/cpuinfo) 2>/dev/null)
+#   ifeq ($(JOBS),0)
+#     JOBS := 1
+#   endif
+# endif
+# define print_msg
+#   @printf '  BUILD:   Doing '\''make \033[33m-j'$(JOBS)'\033[m'\'' parallel build\n'
+# endef
+
+CC=gcc
+WARNINGS=-Wall -Wextra -pedantic -Wshadow -Wpointer-arith \
+		 -Wcast-align -Wwrite-strings -Wmissing-prototypes \
+		 -Wmissing-declarations -Wredundant-decls -Wnested-externs \
+		 -Winline -Wuninitialized -Wconversion -Wstrict-prototypes \
+		 -Werror=implicit-function-declaration \
+		 -Werror=incompatible-pointer-types
+CFLAGS=-g -O0 $(WARNINGS)
+CLIBS=
+
+SRC=$(shell find . -type f -name "*.c")
+OBJS=$(patsubst %.c,%.o,$(SRC))
+DEPS=$(patsubst %.c,%.d,$(SRC))
+TARGET=a.out
+
+
+all: $(TARGET)
+
+-include $(DEPS)
+
+$(TARGET): $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(CLIBS) -o $(TARGET)
+
+%.o: %.c Makefile
+	$(CC) $(CFLAGS) -MMD -MP -c $< -o $@
+
+clean:
+	$(RM) $(wildcard $(OBJS) $(DEPS) $(TARGET))

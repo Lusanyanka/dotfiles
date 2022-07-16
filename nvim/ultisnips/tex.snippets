@@ -1,0 +1,89 @@
+#
+# normal snips
+#
+
+snippet "be(gin)?" "environment" brw
+\begin{$1}`!p
+if t[1] == "enumerate":
+	snip.rv = "[label=(\\alph*)]"`
+	`!p
+list_names = frozenset(["description", "itemize", "enumerate"])
+if t[1] in list_names:
+	snip.rv = "\\item "`$0
+\end{$1}
+endsnippet
+
+snippet "enu(merate)?" "fancy enumeration environment" brw
+\begin{enumerate}[label=${1:\arabic*) }]
+	\item $0
+\end{enumerate}
+endsnippet
+
+snippet "sec(tion)?" "section" brmw
+\section*{$0}
+
+endsnippet
+
+snippet "al(ign)?" "align*" brw
+\begin{align*}
+	$0
+\end{align*}
+endsnippet
+
+snippet "tab(ular)?" "tabular" brw
+\begin{tabular}{${1:|c|}}
+	${2:\hline
+	$0\\\\\\hline}
+\end{tabular}
+endsnippet
+
+snippet par "paragraph" bw
+\paragraph{$1}  $0
+endsnippet
+
+snippet "i(talic)?" "italic" wr
+\emph{${1:${VISUAL}}} $0
+endsnippet
+
+snippet "b(old)?" "bold" wr
+\textbf{${1:${VISUAL}}} $0
+endsnippet
+
+snippet tt "teletype" w
+\texttt{${1:${VISUAL}}} $0
+endsnippet
+
+snippet frac "fraction" w
+\frac{$1}{$2} $0
+endsnippet
+
+snippet binom "binomial" w
+\binom{$1}{$2} $0
+endsnippet
+
+snippet sum "summation" w
+\sum_{$1}^{$2} $0
+endsnippet
+
+snippet lr "leftright" w
+\left$1 $2 \right`!p
+swap = {
+	"(": ")",
+	"[": "]",
+	"{": "}",
+	"|": "|",
+	"<": ">"
+}
+if t[1] in swap:
+	snip.rv = swap[t[1]]
+else:
+	snip.rv = t[1]` $0
+endsnippet
+
+#
+# auto snippets
+#
+
+snippet \[ "math math" bA
+\[ $1 \]$0
+endsnippet

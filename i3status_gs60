@@ -1,0 +1,56 @@
+general {
+	output_format = "i3bar"
+	colors = true
+	interval = 2
+	color_good = "#7BF09A"
+	color_degraded = "#F0C674"
+	color_bad = "#dd6666"
+}
+
+order += "wireless wlp5s0"
+order += "ethernet enp4s0"
+order += "cpu_temperature 0"
+order += "cpu_usage"
+order += "disk /"
+order += "volume master"
+order += "battery all"
+order += "time"
+
+wireless wlp5s0 {
+	format_up = "W: %ip"
+	format_down = "W: down"
+}
+
+ethernet enp4s0 {
+	format_up = "E: %ip"
+	format_down = ""
+}
+
+battery all {
+	format = "%status %percentage %remaining %emptytime"
+	format_down = ""
+	hide_seconds = true
+	integer_battery_capacity = true
+	low_threshold = 15
+}
+
+volume master {
+	format = "♪: %volume"
+	format_muted = "♪: muted"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+}
+
+cpu_temperature 0 {
+	format = "T: %degrees°C"
+	path = "/sys/devices/platform/coretemp.0/hwmon/hwmon1/temp1_input"
+}
+
+cpu_usage {
+	format = "CPU: %usage"
+}
+
+disk "/" {
+	format = "DF: %free"
+}

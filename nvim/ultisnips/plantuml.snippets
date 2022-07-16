@@ -1,0 +1,33 @@
+snippet ifdef "ifdef predefine"
+!ifdef ${1:FLAG}
+	$0
+!endif
+endsnippet
+
+snippet opt "option block"
+opt ${1:Option Text}
+	$2
+end opt
+endsnippet
+
+snippet note "generic note function"
+!ifndef HIDE_NOTES
+$genericNote(${1:right}, ${2:left})
+	$3
+$endGenericNote()
+!endif
+endsnippet
+snippet linuxNote "Linux note function"
+!ifndef HIDE_LINUX_NOTES
+$linuxNote(${1:right}, ${2:left})
+	$3
+$endLinuxNote()
+!endif
+endsnippet
+snippet warningNote "Warning note function"
+!ifndef HIDE_WARNING_NOTES
+$warningNote(${1:right}, ${2:left})
+	$3
+$endWarningNote()
+!endif
+endsnippet

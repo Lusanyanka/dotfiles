@@ -1,0 +1,275 @@
+# colors
+set $text #d6dbd2
+# Super pink focus window
+# set $focus #e75a7c
+# Manjaro default light grep
+set $focus #556064
+set $nofocus #1d2329
+set $urgent #912b2b
+
+# set colors
+# class                 border   backgr. text    indicator child_border
+client.focused          $focus   $focus  $nofocus $focus    $focus
+client.focused_inactive $nofocus #5f676a $text $nofocus  $nofocus
+client.unfocused        $nofocus #222222 $text $nofocus  $nofocus
+client.urgent           $urgent  #900000 $text $urgent   $urgent
+client.placeholder      #000000  #0c0c0c $text #000000   #0c0c0c
+
+client.background       #ffffff
+
+# Font for window titles
+# font pango:monospace 8
+font pango:Roboto Mono 10
+
+set $w1 1
+set $w2 2
+set $w3 3
+set $w4 4
+set $w5 5
+set $w6 6
+set $w7 7
+set $w8 8
+set $w9 9
+# set $w0 0
+
+set $w1regex class="(?i)firefox|chrome"
+set $w1regex
+set $w2regex class="(?i)eclipse|sublime"
+set $w2regex
+set $w3regex class="(?i)steam"
+set $w4regex
+set $w5regex
+set $w6regex
+set $w7regex
+set $w8regex
+set $w9regex class="(?i)signal|telegram"
+set $w9regex
+# set $w0regex class="(?i)vpnui"
+
+# Automatically move windows to the appropriate workspace
+# assign [$w1regex] $w1
+# assign [$w2regex] $w2
+# assign [$w3regex] $w3
+# assign [$w4regex] $w4
+# assign [$w5regex] $w5
+# assign [$w6regex] $w6
+# assign [$w7regex] $w7
+# assign [$w8regex] $w8
+# assign [$w9regex] $w9
+# assign [$w0regex] $w0
+
+# Set messaging applications to automatically float
+# for_window [$w9regex] floating enable
+
+# Set thunderbird windows to automatically float
+for_window [window_role="Msgcompose" class="(?i)Thunderbird"] floating enable
+for_window [window_role="compose" class="(?i)claws-mail"] floating enable
+for_window [class="(?i)Nautilus|feh|vlc|Thunar|QEMU|vpnui|lxappearance|pavucontrol|processing-core-PApplet|tk|RLI|Encounter"] floating enable
+
+# left-up-down-right keys
+set $leftkey  h
+set $downkey  j
+set $upkey    k
+set $rightkey l
+
+set $mod Mod4
+
+floating_modifier $mod
+bindsym $mod+Shift+q kill
+
+bindsym $mod+Shift+v split h
+bindsym $mod+v split v
+bindsym $mod+space floating toggle
+bindsym $mod+s layout stacking
+bindsym $mod+w layout tabbed
+bindsym $mod+e layout toggle split
+bindsym $mod+a focus parent
+bindsym $mod+z focus child
+
+bindsym $mod+1 workspace $w1
+bindsym $mod+2 workspace $w2
+bindsym $mod+3 workspace $w3
+bindsym $mod+4 workspace $w4
+bindsym $mod+5 workspace $w5
+bindsym $mod+6 workspace $w6
+bindsym $mod+7 workspace $w7
+bindsym $mod+8 workspace $w8
+bindsym $mod+9 workspace $w9
+# bindsym $mod+0 workspace $w0
+
+bindsym $mod+Shift+1 move container to workspace $w1
+bindsym $mod+Shift+2 move container to workspace $w2
+bindsym $mod+Shift+3 move container to workspace $w3
+bindsym $mod+Shift+4 move container to workspace $w4
+bindsym $mod+Shift+5 move container to workspace $w5
+bindsym $mod+Shift+6 move container to workspace $w6
+bindsym $mod+Shift+7 move container to workspace $w7
+bindsym $mod+Shift+8 move container to workspace $w8
+bindsym $mod+Shift+9 move container to workspace $w9
+# bindsym $mod+Shift+0 move container to workspace $w0
+
+bindsym $mod+Shift+r restart
+bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcut. Do you really want to exit i3? This will end your X session.' -b 'Yes, exit i3' 'i3-msg exit'"
+
+bar {
+	status_command i3status
+	tray_output primary
+} 
+
+## TODO
+# start lock
+
+bindsym $mod+f fullscreen toggle
+
+bindsym $mod+$leftkey focus left
+bindsym $mod+$downkey focus down
+bindsym $mod+$upkey focus up
+bindsym $mod+$rightkey focus right
+
+bindsym $mod+Shift+$leftkey move left
+bindsym $mod+Shift+$downkey move down
+bindsym $mod+Shift+$upkey move up
+bindsym $mod+Shift+$rightkey move right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+# resize window
+mode "resize" {
+        bindsym $leftkey resize shrink width 10 px or 10 ppt
+        bindsym $downkey resize grow height 10 px or 10 ppt
+        bindsym $upkey resize shrink height 10 px or 10 ppt
+        bindsym $rightkey resize grow width 10 px or 10 ppt
+
+        bindsym Left resize shrink width 10 px or 10 ppt
+        bindsym Down resize grow height 10 px or 10 ppt
+        bindsym Up resize shrink height 10 px or 10 ppt
+        bindsym Right resize grow width 10 px or 10 ppt
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+
+# Set shut down, restart and locking features
+bindsym $mod+0 mode "$mode_system"
+set $mode_system (l)ock, (e)xit, (s)uspend, (h)ibernate, (r)eboot, (Shift+s)hutdown
+mode "$mode_system" {
+    bindsym l exec --no-startup-id i3exit lock, mode "default"
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym e exec --no-startup-id i3-msg exit, mode "default"
+    bindsym h exec --no-startup-id systemctl hibernate, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+bindsym $mod+r mode "resize"
+
+bindsym $mod+c exec reload
+bindsym $mod+Return exec urxvtc
+bindsym $mod+Shift+Return exec thunar
+bindsym $mod+t exec urxvtc -title MAGIC_TERM -geometry 120x40
+for_window [title="MAGIC_TERM"] floating enable
+
+# Program launcher
+# bindsym $mod+f exec rofi -show window
+# bindsym $mod+d exec rofi -show combi -modi combi
+bindsym $mod+Shift+s exec rofi -show ssh
+bindsym $mod+Shift+d exec rofi -modi run -show run
+bindsym $mod+d exec rofi -show drun
+
+# screenshots
+bindsym --release Print exec --no-startup-id "maim -s | tee ~/Pictures/screenshots/$(date --iso-8601='seconds').png | xclip -selection clipboard -t image/png"
+bindsym --release $mod+Print exec --no-startup-id "maim -st 9999999 | convert - \( +clone -background black -shadow 100x6+10+10 \) +swap -background none -layers merge +repage - | tee ~/Pictures/screenshots/$(date --iso-8601='seconds').png | xclip -selection clipboard -t image/png"
+
+bindsym XF86MonBrightnessDown exec --no-startup-id "xbacklight -dec 10"
+bindsym XF86MonBrightnessUp exec --no-startup-id "xbacklight -inc 10"
+
+# Disable window titlebars
+new_window pixel 4
+new_float normal
+hide_edge_borders none
+
+# exec --no-startup-id syndaemon -i 0.7 -d
+# exec --no-startup-id compton -CGb
+# exec --no-startup-id $HOME/.fehbg
+exec --no-startup-id nitrogen --restore; sleep 1; compton -b
+exec --no-startup-id $HOME/.screenlayout/default.sh
+# exec --no-startup-id thunar --daemon
+exec --no-startup-id redshift-gtk
+exec --no-startup-id urxvtd
+# exec --no-startup-id pasystray
+exec --no-startup-id /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+exec --no-startup-id nm-applet
+exec --no-startup-id xfce4-power-manager
+exec --no-startup-id pamac-tray
+exec --no-startup-id xautolock -time 10 -locker blurlock
+exec --no-startup-id pasystray
+exec --no-startup-id dunst
+
+#############################
+### settings for i3-gaps: ###
+#############################
+
+# Set inner/outer gaps
+gaps inner 14
+gaps outer -2
+
+# Additionally, you can issue commands with the following syntax. This is useful to bind keys to changing the gap size.
+# gaps inner|outer current|all set|plus|minus <px>
+# gaps inner all set 10
+# gaps outer all plus 5
+
+# Smart gaps (gaps used if only more than one container on the workspace)
+smart_gaps on
+
+# Smart borders (draw borders around container only if it is not the only container on this workspace) 
+# on|no_gaps (on=always activate and no_gaps=only activate if the gap size to the edge of the screen is 0)
+smart_borders on
+
+# Press $mod+Shift+g to enter the gap mode. Choose o or i for modifying outer/inner gaps. Press one of + / - (in-/decrement for current workspace) or 0 (remove gaps for current workspace). If you also press Shift with these keys, the change will be global for all workspaces.
+set $mode_gaps Gaps: (o) outer, (i) inner
+set $mode_gaps_outer Outer Gaps: +|-|0 (local), Shift + +|-|0 (global)
+set $mode_gaps_inner Inner Gaps: +|-|0 (local), Shift + +|-|0 (global)
+bindsym $mod+Shift+g mode "$mode_gaps"
+
+mode "$mode_gaps" {
+        bindsym o      mode "$mode_gaps_outer"
+        bindsym i      mode "$mode_gaps_inner"
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_inner" {
+        bindsym plus  gaps inner current plus 5
+        bindsym minus gaps inner current minus 5
+        bindsym 0     gaps inner current set 0
+
+        bindsym Shift+plus  gaps inner all plus 5
+        bindsym Shift+minus gaps inner all minus 5
+        bindsym Shift+0     gaps inner all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}
+mode "$mode_gaps_outer" {
+        bindsym plus  gaps outer current plus 5
+        bindsym minus gaps outer current minus 5
+        bindsym 0     gaps outer current set 0
+
+        bindsym Shift+plus  gaps outer all plus 5
+        bindsym Shift+minus gaps outer all minus 5
+        bindsym Shift+0     gaps outer all set 0
+
+        bindsym Return mode "default"
+        bindsym Escape mode "default"
+}

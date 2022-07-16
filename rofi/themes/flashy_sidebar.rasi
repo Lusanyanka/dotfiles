@@ -1,0 +1,180 @@
+/**
+ * User: qball
+ * Copyright: Dave Davenport
+ *
+ * Extended and modified by p.olson
+ */
+configuration {
+	show-icons: true;
+	// display-drun: "🔍 "; // magnifying-glass emoji for search
+	display-drun: "drun";
+	display-ssh: "ssh";
+	display-window: "window";
+	sidebar-mode: true;
+}
+* {
+	// text-color:  #ffeedd;
+	/* pulled straight from Xresources for urxvt */
+	foreground:   #d5d8d6;
+	background:   #12161a;
+	cursorColor:  #c5c8c6;
+	black:        #12161a;
+	lightblack:   #363a40;
+	red:          #912b2b;
+	lightred:     #cc6666;
+	green:        #00aa00;
+	lightgreen:   #7bf09a;
+	yellow:       #e29140;
+	lightyellow:  #f0c674;
+	blue:         #4950ad;
+	lightblue:    #7e90ff;
+	magenta:      #aa00aa;
+	lightmagenta: #cd69cd;
+	cyan:         #006aaa;
+	lightcyan:    #53adc9;
+	white:        #aaaaaa;
+	lightwhite:   #d5d8d6;
+
+	text-color: @lightwhite;
+	background-color:  rgba(0,0,0,0);
+	selbg: @lightblack;
+	actbg: @lightblack;
+	urgbg: @red;
+	winbg: #f8f8f8;
+
+	separatorColor: @lightwhite;
+	selected-normal-foreground:  @winbg;
+	normal-foreground:           @text-color;
+	selected-normal-background:  @actbg;
+	normal-background:           @background-color;
+
+	selected-urgent-foreground:  @background;
+	urgent-foreground:           @text-color;
+	selected-urgent-background:  @urgbg;
+	urgent-background:           @urgbg;
+
+	selected-active-foreground:  @winbg;
+	active-foreground:           @text-color;
+	selected-active-background:  @actbg;
+	active-background:           @selbg;
+
+	line-margin: 2;
+	line-padding: 2;
+	separator-style: "none";
+	hide-scrollbar: "true";
+	margin: 0;
+	padding: 0;
+
+	// Bold, Italic, Underline
+	highlight:     bold #ffffff;
+}
+#window {
+	border:  0px 2px 0px 0px;
+	text-color: @lightwhite;
+	orientation: horizontal;
+	children: [mainbox, dummy];
+
+	fullscreen: true;
+	location: west;
+	anchor:   west;
+	/* this uses fullscreen to prevent accidentally closing the sidebar,
+	 * but it could just as easily be reconfigured with a proper width using
+	 * the commented-out code below. Note that the width of `#entry` must be
+	 * unset for the window-width to apply correctly. */
+	// location: west;
+	// anchor: west;
+	// height: 100%;
+	// width: 20em;
+}
+#entry { width: 20em; }
+#mainbox {
+	// spacing: 0.8em;
+	expand: false;
+	background-color: #121212ee;
+	children: [ inputbar,message,listview,sidebar ];
+}
+#inputbar {
+	background-color: @lightblack;
+	text-color: @lightgreen;
+	padding: 4px;
+	border: 0px 0px 2px 0px;
+	children:   [ prompt,textbox-prompt-colon,entry,case-indicator ];
+}
+#message {
+	border: 2px 0px 0px;
+	border-color: @separatorColor;
+	background-color: @lightblack;
+	padding: 1px;
+}
+#listview {
+	border: 2px 0px 0px;
+	border-color: @separatorColor;
+	padding: 0 0 0 1em;
+	spacing: 0em;
+	dynamic: false;
+	cycle: true;
+	lines: 0;
+}
+#element { padding: 0.6em; }
+#dummy { expand: true; }
+#sidebar {
+	border: 2px 0px 0px 0px;
+	border-color: @separatorColor;
+	background-color: @lightblack;
+	padding: 10px;
+}
+#button selected {
+	border-color: @lightgreen;
+	text-color: @lightgreen;
+}
+#textbox-prompt-colon {
+	expand:     false;
+	str:        ":";
+	margin:     0px 0.3em 0em 0em ;
+	text-color: @normal-foreground;
+}
+/* element colour application */
+element normal.normal {
+	background-color: @normal-background;
+	text-color:       @normal-foreground;
+}
+element normal.urgent {
+	background-color: @normal-background;
+	text-color:       @urgent-foreground;
+	border:           0 0 solid 0 5px;
+	border-color:	  @urgent-background;
+}
+element normal.active {
+	background-color: @normal-background;
+	text-color:       @active-foreground;
+	border:           0 0 solid 0 5px;
+	border-color:	  @active-background;
+}
+element selected.normal {
+	background-color: @selected-normal-background;
+	text-color:       @selected-normal-foreground;
+}
+element selected.urgent {
+	background-color: @selected-urgent-background;
+	text-color:       @selected-urgent-foreground;
+}
+element selected.active {
+	background-color: @selected-active-background;
+	text-color:       @selected-active-foreground;
+}
+element alternate.normal {
+	background-color: @normal-background;
+	text-color:       @normal-foreground;
+}
+element alternate.urgent {
+	background-color: @normal-background;
+	text-color:       @urgent-foreground;
+	border:           0 0 solid 0 5px;
+	border-color:	  @urgent-background;
+}
+element alternate.active {
+	background-color: @normal-background;
+	text-color:       @active-foreground;
+	border:           0 0 solid 0 5px;
+	border-color:	  @active-background;
+}

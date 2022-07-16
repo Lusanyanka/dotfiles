@@ -1,0 +1,114 @@
+##
+## Laptop wireless firmware crap
+##
+# firmware-linux-nonfree
+# firmware-atheros
+# firmware-realtek
+# network-manager
+
+##
+## Command-line tools
+##
+# w3m
+sudo
+tmux
+xclip
+neovim
+zsh
+git
+htop
+# tree
+build_essential
+# ctags
+# gdb
+# screen
+# sshfs
+
+##
+## i3 and Xserver
+##
+xserver-xorg
+xinit
+# xfonts-75dpi
+# xfonts-scalable
+# xinput
+# xmodmap
+i3
+grub2-splashimages
+desktop-base
+
+##
+## i3 utils
+##
+rxvt-unicode-256color
+feh
+rofi
+compton
+scrot
+xbacklight
+redshift-gtk
+arandr
+# msi-keyboard
+
+##
+## Graphical applications
+##
+chromium
+qalculate
+claws-mail
+# thunderbird
+# libreoffice
+evince
+thunar
+# krita
+# gimp
+
+##
+## System applications
+##
+cifs-utils
+samba
+pulseaudio
+cups-pdf
+printer-driver-cups-pdf
+
+##
+## Theme modification packages
+##
+# lxappearance
+# breeze-icon-theme
+# faba-icon-theme
+# faenza-icon-theme
+# mate-icon-theme
+# moblin-icon-theme
+# numix-icon-theme
+# oxygen-icon-theme
+# gnome-icon-theme-suede
+# human-icon-theme
+# tangerine-icon-theme
+# numix-gtk-theme
+# albatross-gtk-theme
+blackbird-gtk-theme
+bluebird-gtk-theme
+greybird-gtk-theme
+
+##
+## LaTeX installation
+##
+# latexmk
+# texlive
+# texlive-science
+# texlive-latex-base
+# texlive-latex-extra
+# texlive-latex-recommended
+
+##
+## Virtualization packages
+##
+# qemu-kvm
+# libvirt-clients
+# libvirt-daemon
+# libvirt-daemon-system
+# virt-manager
+# qemu-system-x86
+# debootstrap

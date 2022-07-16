@@ -1,0 +1,93 @@
+general {
+	output_format = "i3bar"
+	colors = true
+	interval = 2
+	color_good = "#7BF09A"
+	color_degraded = "#F0C674"
+	color_bad = "#dd6666"
+}
+
+
+order += "ethernet enp6s0"
+order += "ethernet enp4s0"
+order += "wireless wlo2"
+order += "cpu_temperature 1"
+order += "cpu_usage"
+# order += "load"
+order += "disk /"
+order += "volume master"
+order += "battery all"
+order += "time"
+
+# workstation internet watch
+ethernet enp6s0 {
+	format_up = "enp6s0: %ip"
+	format_down = "enp6s0: down"
+}
+ethernet enp4s0 {
+	format_up = "enp4s0: %ip"
+	format_down = "enp4s0: down"
+}
+wireless wlo2 {
+	format_up = "W: %ip"
+	format_down = "W: down"
+}
+
+# aspire internet watches
+wireless wlp3s0 {
+	format_up = "W: %ip"
+	format_down = "W: down"
+}
+
+ethernet enp2s0f1 {
+	format_up = "E: %ip"
+	format_down = ""
+}
+
+battery all {
+	format = "%status %percentage %remaining %emptytime"
+	format_down = ""
+	hide_seconds = true
+	integer_battery_capacity = true
+	low_threshold = 15
+}
+
+volume master {
+	format = "♪: %volume"
+	format_muted = "♪: muted"
+	device = "default"
+	mixer = "Master"
+	mixer_idx = 0
+}
+
+run_watch DHCP {
+	pidfile = "/var/run/dhclient*.pid"
+	format = "DHCP"
+	format_down = "DHCP"
+}
+
+load {
+	format = "L: %1min"
+}
+
+cpu_temperature 0 {
+	format = "T: %degrees°C"
+	path = "/sys/devices/platform/coretemp.0/hwmon/hwmon0/temp1_input"
+}
+# temp input for Gigabyte Designare x399
+cpu_temperature 1 {
+	format = "T: %degrees°C"
+	path = "/sys/devices/virtual/thermal/thermal_zone0/temp"
+}
+
+cpu_usage {
+	format = "CPU: %usage"
+}
+
+disk "/" {
+	format = "DF: %free (%avail)/%total"
+}
+
+time {
+	format = "%Y-%m-%d %I:%M%P"
+}

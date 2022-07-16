@@ -1,0 +1,83 @@
+#!/bin/sh
+# A file of functions to make working with debootstrap(8) easy and consistent
+# between scripts.
+#
+# Environment variables:
+# deboot_extra: comma-seperated list of packages to install in the chroot
+# deboot_version: release codename or symbolic name. Defaults to stable.
+
+# 
+# n.b. that the proper way to login without passing through $HOME is 
+#  $ sudo -H chroot <dir>
+
+deboot_extra="$deboot_extra,build-essential"
+
+if [ -z "$deboot_version" ]; then
+	deboot_version="stable"
+	deboot_package_mirror="http://httpredir.debian.org/debian"
+fi
+deboot_cache_file="$HOME/.debootstrap_cache.tar"
+
+# append `--include=` iff $debootextra is set
+deboot_cmd="debootstrap\
+`test -n "$deboot_extra" && echo " --include=\"$deboot_extra\""`"
+
+# route debootstrap's apt traffic through the local cache with apt-cacher-ng
+# deboot_cmd="http_proxy=\"http://localhost:3142\" $deboot_cmd"
+
+if [ "$#" -ne 1 ]; then
+	echo "Usage: deboot_install <target_dir>"
+	exit 1
+# elif [ -e "$1" ]; then
+# 	>&2 echo "$1 already exists, exiting"
+# 	exit 2
+fi
+
+if [ -e "$deboot_cache_file" ]; then
+	echo "Found debootstrap cache (${deboot_cache_file})"
+	# mv "$deboot_cache_file" "tmp_$deboot_cache_file"
+	# deboot_cmd="$deboot_cmd --unpack-tarball=tmp_$deboot_cache_file"
+
+	# preserved in case there's ever a need to generate a list of installed
+	# packages in the debootstrap tar cache
+	# local pkg_file=`tar tf ~/.debootstrap_cache.tar | grep Packages`
+	# local prev_pkg_list="\
+	# 	`tar axf ~/.debootstrap_cache.tar $pkd_file -O \
+	# 	| grep Package: \
+	# 	| awk '{printf "%s,",$2}'`"
+	# if [ -z "$deboot_extra" ]; then
+	# 	deboot_extra="${prev_pkg_list%?}"
+	# else
+	# 	deboot_extra="${prev_pkg_list}${deboot_extra}"
+	# fi
+else
+	sudo $deboot_cmd --make-tarball="$deboot_cache_file" $deboot_version \
+		./__debootstrap_tmp_directory "$deboot_package_mirror" && \
+		if [ -e "tmp_$deboot_cache_file" ]; then
+			rm -f "tmp_$deboot_cache_file"; fi
+fi
+
+mkdir -pv "$1"
+sudo $deboot_cmd\
+	`test -e $deboot_cache_file && echo " --unpack-tarball=$deboot_cache_file"`\
+	$deboot_version "$1" "$deboot_package_mirror"\
+	|| return $?
+
+sudo sed -n "w $1/post_install.sh" <<-EOF
+	#!/bin/sh
+	set -x
+	passwd -d root
+	echo "`hostname`" > /etc/hostname
+	echo "127.0.0.1	localhost	`hostname`" > /etc/hosts
+	echo "en_US.UTF-8 UTF-8" > /etc/locale.gen
+	echo "/dev/sda1 / ext4 defaults,noatime 0 1" > /etc/fstab
+	locale-gen
+	# echo "\\
+	# auto lo
+	# iface lo inet loopback
+
+	# auto enp0s3
+	# iface enp0s3 inet dhcp"
+	rm "\$0"
+EOF
+sudo -H chroot "$1" sh "./post_install.sh"

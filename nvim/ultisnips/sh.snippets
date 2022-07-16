@@ -1,0 +1,70 @@
+snippet if "if statement" b
+if $1; then
+	$2
+${4:else
+	$3
+}fi
+endsnippet
+
+snippet case "case statement" b
+case ${2:"\$${1:variable}"} in
+	(*) # no match
+		;;
+esac
+endsnippet
+
+snippet while "while statement" b
+while $1; do
+	$2
+done
+endsnippet
+
+snippet until "until statement" b
+until $1; do
+	$2
+done
+endsnippet
+
+snippet for "for statement" b
+for ${1:name} in ${2:words}; do
+	$3
+done
+endsnippet
+
+snippet ffor "arithmetic for statement" b
+for (( ${1:i = $min}; ${2:i < $max}; ${3:i = $i + 1} )); do
+	$4
+done
+endsnippet
+
+snippet args "argument processing boilerplate" b
+function print_usage () {
+cat << EndOfHereDoc
+Usage `basename "$0"` [-h|--help]
+EndOfHereDoc
+}
+
+# Parse arguments, positional_arguments becomes a newline-separated
+# list of the non-option arguments specified for the script
+positional_arguments=""
+while [ "$#" -ne 0 ]; do
+	case "\$1" in
+		(-h|--help) print_usage; exit 0;;
+		(--)
+			shift
+			for arg; do
+				positional_arguments="$(printf '%s\n%s' "$positional_arguments" "$arg")"
+			done
+		(-*) echo "unrecognized option \"\$1\", see --help" >2; exit 1;;
+		(*)
+			positional_arguments="$(printf '%s\n%s' "$positional_arguments" "$1")"
+			shift ;;
+	esac
+done
+
+[ -n "$positional_arguments" ] && { IFS=$'\n'; set $positional_arguments; unset IFS; }
+echo "Positional arguments:"
+for arg; do
+	echo "\"$arg\""
+done
+endsnippet

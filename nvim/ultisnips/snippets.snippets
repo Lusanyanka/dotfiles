@@ -1,0 +1,25 @@
+snippet flags
+# snippet flags help:
+#
+# b - beginning of line
+# i - in-word expansion
+# w - word boundary
+# r - regex
+# t - force noexpandtab
+# s - remove whitespace before the cursor if it's at the end of a line
+# m - trim all right-hand whitespace from snippet lines
+# e - custom context snippet
+# A - auto-trigger snippet
+endsnippet
+
+snippet global
+global !p
+${1:# global python here}
+endglobal
+endsnippet
+
+snippet "snip(pet)?" "" brs
+`echo 'snippet'` ${1:pattern} "$2" ${3:flags(biwrtsmeA)}
+$0
+`echo 'endsnippet'`
+endsnippet
