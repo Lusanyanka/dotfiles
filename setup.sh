@@ -1,12 +1,24 @@
 #!/bin/sh
 
 # Files to link from this directory to their counterparts in $HOME
-homedir_files="zshrc zprofile xinitrc tmux.conf Xresources"
 link_scripts="clip-sc print-colors baseconv"
 config=${XDG_DATA_HOME:-$HOME/.config}
 
-##
-# ask question [default]
+# Error/Warning/Info message shorthand
+__highlight_err="`tput bold``tput setaf 1`"  # bold red
+__highlight_warn="`tput bold``tput setaf 3`" # bold yellow
+__highlight_info="`tput bold``tput setaf 2`" # bold green
+__highlight_rst="`tput sgr0`"
+echo_err  () { echo  "${__highlight_err}ERROR:${__highlight_rst} $@" 1>&2; }
+echo_warn () { echo "${__highlight_warn}WARNING:${__highlight_rst} $@" 1>&2; }
+echo_info () { echo "${__highlight_info}INFO:${__highlight_rst} $@" 1>&2; }
+
+bundle_rules="basic_utilities i3_setup scripts"
+basic_utilities="git zsh neovim tmux"
+i3_setup="i3 dunst rofi conky redshift compton xmodmap"
+scripts="baseconv"
+
+## ask <question> [default]
 #
 # form and print a question requiring a yes or no response from the user.
 # Responses are matched with [yY].* as "yes" and [nN].* as "no"
@@ -50,8 +62,7 @@ ask ()
 	done
 }
 
-##
-# add_link file [target]
+## add_link <file> [target]
 #
 # create a link of a file or a directory in the repo to the corresponding place
 # in the home directory.  If there's no second argument, then add_link presumes
@@ -92,23 +103,51 @@ add_link ()
 	$cmd "$src" "$targ"
 }
 
+##
+# run_config <rule>
 #
-# setup links to dotfiles
-#
-for i in ${homedir_files}; do
-	add_link "$i"
-done
+# executes program-specific setup actions based on the rule, often the name of
+# the program, that's handed to it.
+##
+run_config () {
+	case "$1" in
+		(neovim) add_link nvim "${config}/nvim" ;;
+		(git)    add_link git  "${config}/git"  ;;
+		(tmux)   add_link tmux.conf ;;
+		(zsh)
+			add_link zprofile
+			add_link zshrc
+			;;
 
-#mkdir -p "$config/i3"
-#add_link i3_config "$config/i3/config"
-add_link nvim "$config/nvim"
-add_link git "$config/git"
-#add_link dunstrc "$config/dunst/dunstrc"
-#add_link rofi "$config/rofi"
-#add_link conky "$config/conky"
-#add_link redshift.conf "$config/redshift.conf"
-#add_link compton.conf "$config/compton.conf"
-# add_link xmodmap_capslock_esc "$HOME/.Xmodmap"
+		(x11)
+			addlink Xresources
+			addlink xinitrc
+			;;
+
+		(i3)
+			mkdir -p "${config}/i3"
+			addlink i3_config "${config}/i3/config"
+			;;
+
+		#TODO: unimplemented rules fall though into error case
+		(i3status)
+		(dunst)
+		(rofi)
+		(conky)
+		(redshift)
+		(compton)
+		(xmodmap)
+		(*)
+			err_echo "run_config: no rule for $1 implemented."
+			return -1
+			;;
+	esac
+	return 0
+}
+
+for prog in ${basic_utilities}; do
+	run_config $prog
+done
 exit 0
 
 ## TODO:
@@ -119,5 +158,3 @@ mkdir -p "$HOME/.local/bin"
 for script in ${link_scripts}; do
 	add_link "useful_scripts/$script" "$HOME/.local/bin/$script"
 done
-
-echo "This script does not set up i3status"
